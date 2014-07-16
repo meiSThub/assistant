@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="assistant"
+  id="myeclipse.1405489164954"
+  context-root="/assistant"
+  j2ee-spec="6.0"
+  archive="assistant.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
