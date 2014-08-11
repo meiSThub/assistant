@@ -1,0 +1,12 @@
+.width{
+   width:500px
+ 
+}
+
+@media(max-width:768px){
+	
+	.width{
+   width:200px
+ 
+}
+}

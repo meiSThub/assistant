@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+  <!DOCTYPE validators PUBLIC 
+  		"-//Apache Struts//XWork Validator 1.0.2//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+<!-- 
+	<field name="title">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>标题不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">16</param>
+			<message>标题必须在 ${minLength} 和 ${maxLength}之间</message>
+		</field-validator>
+	</field>
+	 -->
+	 <field name="model">
+	 <field-validator type="visitor">
+	 <param name="appendPrefix">false</param>
+	 <message>标题不能为空，且标题必须在 1和 16个字数之间</message>
+	 </field-validator>
+	 </field>
+</validators>

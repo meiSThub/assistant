@@ -2,7 +2,7 @@
 <project-module
   type="WEB"
   name="assistant"
-  id="myeclipse.1405489164954"
+  id="myeclipse.1407549354567"
   context-root="/assistant"
   j2ee-spec="6.0"
   archive="assistant.war">

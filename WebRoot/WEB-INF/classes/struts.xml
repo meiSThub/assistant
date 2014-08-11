@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	<constant name ="struts.i18n.encoding" value ="UTF-8" />
+	
+    <package name="default" extends="struts-default" namespace="/">
+   		<default-action-ref name="index"></default-action-ref>
+   		<!-- 首页action -->
+   		<action name="index" class="edu.zzuli.assistant.action.Index">	
+   			<result name="success">/index.jsp</result>
+   		</action>
+   		<action name="notice_*" class="edu.zzuli.assistant.action.NoticeAction" method="{1}">	
+   			<result name="detail_success">/notice_detail.jsp</result>
+   			<result name="list_success">/notice_list.jsp</result>
+   		</action>
+   		<action name="news_*" class="edu.zzuli.assistant.action.NewsAction" method="{1}">	
+   			<result name="news_detail">/news_detail.jsp</result>
+   			<result name="news_teacher">/news_teacher.jsp</result>
+   			<result name="news_public">/news_public.jsp</result>
+   			<result name="news_follow">/self_news_follow.jsp</result>
+   			<result name="news_self">/self_news.jsp</result>
+   			<result name="news_post">/self_news_post.jsp</result>
+   			<result name="login" type="redirect" >/index.action</result>
+   			<result name="input">/self_news_post.jsp</result>
+   			<result name="news_validate" type="redirect">/news_send.action</result>
+   		</action>
+   		<action name="news_send" class="edu.zzuli.assistant.action.NewsAction" method="send">	
+   			<result name="news_detail">/news_detail.jsp</result>
+   			<result name="post_success" type="redirect" >/news_self.action</result>
+   		</action>
+   		<!-- 用户信息action -->
+   		<action name="user_*" class="edu.zzuli.assistant.action.UserAction" method="{1}">	
+   			<result name="login" type="redirect" >/index.action</result>
+   			<result name="account">/self_account.jsp</result>
+   			<result name="success">/user_{1}.jsp</result>
+   			
+   			<result name="start_detail" >/focus_list_detail.jsp</result>	
+   			<result name="user_teacher" type="redirect">/user_teacher.action</result>	
+   			<result name="user_public" type="redirect">/user_publicnum.action</result>
+   			<result name="start_publicDetail">/focus_list_publicnumber_detail.jsp</result>
+   			<result name="user_fans" type="redirect">/follow_fans.action</result>
+   			<result name="fans_detail">/focus_list_detail.jsp</result>	
+   		</action>
+   		<!-- 收藏action -->
+   		<action name="collect_*" class="edu.zzuli.assistant.action.CollectAction" method="{1}">	
+   			<result name="login"  type="redirect" >/index.action</result>
+   			<result name="collect_list" >/self_collect.jsp</result>
+   		</action>
+   		<!-- 关注floow.action -->
+   		<action name="follow_*" class="edu.zzuli.assistant.action.FollowAction" method="{1}">	
+   			<result name="start_list">/self_start.jsp</result>
+   			<result name="fans_list">/self_fans.jsp</result>
+   			<result name="user_teacher" type="redirect">/user_teacher.action?page=${page}</result>
+   			<result name="teacherStart_list" type="redirect">/follow_start.action?page=${page}</result>
+   			<result name="user_public" type="redirect">/user_publicnum.action?page=${page}</result>  			
+   			<result name="login" type="redirect" >/index.action</result>
+   		</action>
+   		<!-- 评论content.action -->
+   		<action name="comment_*" class="edu.zzuli.assistant.action.CommentAction" method="{1}">	
+   			<result name="comment_reply" >/self_reply.jsp</result>
+   			<result name="comment_other">/self_comment.jsp</result>
+   			<result name="news_detail" type="redirect" >/news_detail.action?id=${comment.news.id}</result>
+   			<result name="comment_addReply" type="redirect">/comment_reply.action?id=${comment.news.id}</result>
+   			<result name="comment_replyValidate" type="redirect">/comment_reply.action</result>
+   			<result name="comment_replyReply" type="redirect">/comment_reply.action</result>
+   		</action>
+   		<!-- 登录action -->
+   		<action name="login" class="edu.zzuli.assistant.action.UserAction" method="login">	
+   		</action>
+   		<action name="modifyIntro" class="edu.zzuli.assistant.action.UserAction" method="modifyIntro">	
+   		</action>
+   		<action name="modifyEmail" class="edu.zzuli.assistant.action.UserAction" method="modifyEmail">	
+   		</action>
+   		<action name="modifyPassword" class="edu.zzuli.assistant.action.UserAction" method="modifyPassword">	
+   		</action>
+   		<action name="uploadNewsPic" class="edu.zzuli.assistant.action.UploadAction" method="uploadNewsPic">	
+   		</action>
+   	
+   		<!-- 关于我们action -->
+   		<action name="about">
+   		<result>/about.jsp</result>
+   		</action>
+<<<<<<< HEAD
+   		
+    </package>  
+    <package name="admin" extends="struts-default" namespace="/">
+		<global-results>  
+			<result name="fail">/admin_login.jsp</result>  
+		</global-results>  
+    	<!-- 管理入口action -->
+   		<action name="admin">
+   			<result>/admin_login.jsp</result>
+   		</action>
+   		<action name="admin_login" class="edu.zzuli.assistant.action.AdminAction" method="login">
+   			<result >/admin_adduser.jsp</result>
+   			<!-- <result name="fail">/admin_login.jsp</result> -->
+   		</action>
+   		<action name="admin_public" class="edu.zzuli.assistant.action.AdminAction" method="adPublic">
+   			<result name="success">/admin_adduser.jsp</result>
+   		</action>
+   		<action name="admin_adduser" class="edu.zzuli.assistant.action.UserAction" method="add">
+   			<result name="adduser">/admin_adduser.jsp</result>
+   			<result name="manage" type="redirect">/manage_teacher.action</result>
+   			<result name="admi_login" type="redirect">/admin_login.action</result>
+   		</action>
+   		<action name="manage_*" class="edu.zzuli.assistant.action.NewsAction" method="{1}">
+   			<result name="news_teacher">/admin_manage.jsp</result>
+   			<result name="news_public">/admin_manage_public.jsp</result>
+   			<result name="teacher_delete_success" type="redirect">/manage_teacher.action</result>
+   			<result name="public_delete_success" type="redirect">/manage_publicnum.action</result>
+   			<result name="adminlogin" type="redirect">/admin.action</result>
+   		</action>
+   		<action name="admin_notice_*" class="edu.zzuli.assistant.action.NoticeAction" method="{1}">	
+   			<result name="list_success">/admin_manage_admin.jsp</result>
+   			<result name="delete_success" type="redirect">/admin_notice_list.action</result>
+   		</action>
+   		<action name="admin_addnotice" class="edu.zzuli.assistant.action.AdminAction" method="adPublic">
+   			<result name="success">/admin_post.jsp</result>
+   		</action>
+   		<action name="admin_option" class="edu.zzuli.assistant.action.OpinionAction" method="list">
+   			<result name="opinion_list">/admin_opinion.jsp</result>
+   			<!-- <result name="fail">/admin_login.jsp</result> -->
+   		</action>
+    </package>
+=======
+    </package>  
+>>>>>>> 320172c113a8201b301c214c195902f7b960c821
+    
+    <!-- 手机api接口 -->
+    <package name="api" extends="struts-default" namespace="/api">
+       		<action name="notice_*" class="edu.zzuli.assistant.api.action.NoticeAction" method="{1}">	
+   		</action>
+    </package> 
+   
+</struts>
